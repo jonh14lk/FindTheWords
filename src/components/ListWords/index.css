@@ -1,0 +1,27 @@
+.ListWords {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 5rem auto;
+  margin-right: 2rem;
+}
+
+.ListWordsUl {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 25rem;
+  margin: 0rem auto;
+  border: 0.1rem solid rgba(0, 0, 0, 0.233);
+  padding: 0.3rem;
+  justify-content: space-between;
+}
+
+.ListBtn {
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: #2ab7ca;
+  font-weight: 700;
+  color: white;
+  border: none;
+}

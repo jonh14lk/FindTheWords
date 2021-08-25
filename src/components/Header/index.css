@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
+.Header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  background-color: #2ab7ca;
+  position: fixed;
+}
+
+.HeaderTitle {
+  font-family: "Indie Flower", cursive;
+  padding-left: -100;
+  color: white;
+}

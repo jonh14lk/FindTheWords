@@ -1,0 +1,22 @@
+.AddPattern {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 5rem auto;
+  margin-left: 1rem;
+}
+
+.PatternText {
+  width: 473px;
+  height: 400px;
+}
+
+.PatternBtn {
+  padding: 1rem;
+  cursor: pointer;
+  background-color: #2ab7ca;
+  font-weight: 700;
+  color: white;
+  border: none;
+  margin: 1rem 0rem;
+}

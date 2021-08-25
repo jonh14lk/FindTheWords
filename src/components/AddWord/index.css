@@ -1,0 +1,21 @@
+.AddWord {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  margin: 5rem auto;
+  margin-right: 1rem;
+}
+
+.AddToListBtn {
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: #2ab7ca;
+  font-weight: 700;
+  color: white;
+  border: none;
+}
+
+.AddToListInput {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
