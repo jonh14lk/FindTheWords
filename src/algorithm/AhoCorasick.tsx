@@ -1,12 +1,12 @@
-interface Map<T> {
-  [Key: string]: number;
+export interface HashMap<T, T2> {
+  [Key: string]: T2;
 }
 
 export class Node {
   me: string; // character of this node
-  nxt: Map<string>; // the node that I have to go (on aho), if the next char is == x
-  down: Map<string>; // the node that I have to go (on trie), if the next char is == x
-  leaf_count: number; // how many strings ends at this node
+  nxt: HashMap<string, number>; // the node that I have to go (on aho), if the next char is == x
+  down: HashMap<string, number>; // the node that I have to go (on trie), if the next char is == x
+  leafs: Set<string>; // ids of strings that ends at this node
   parent: number; // parent of this node
   link: number; // suffix link of this node
   exit_link: number; // the next leaf node that can be reached from this node using suffix links
@@ -15,7 +15,7 @@ export class Node {
     this.me = ch === undefined ? "a" : ch;
     this.nxt = {};
     this.down = {};
-    this.leaf_count = 0;
+    this.leafs = new Set();
     this.parent = parent === undefined ? -1 : parent;
     this.link = -1;
     this.exit_link = -1;
@@ -24,17 +24,13 @@ export class Node {
 
 export class AhoCorasick {
   trie: Array<Node>;
-  last:number;
 
   constructor() {
     this.trie = [];
     this.trie.push(new Node());
-    this.last = 0;
   }
 
-  addString = (s: string): void => {
-    this.last++;
-    console.log(this.last);
+  addString = (s: string, id: string): void => {
     var v = 0;
     for (var i = 0; i < s.length; i++) {
       const ch = s.charAt(i);
@@ -44,18 +40,16 @@ export class AhoCorasick {
       }
       v = this.trie[v].down[ch];
     }
-    this.trie[v].leaf_count++;
+    this.trie[v].leafs.add(id);
   };
 
-  remString = (s: string): void => {
-    this.last--;
-    console.log(this.last);
+  remString = (s: string, id: string): void => {
     var v = 0;
     for (var i = 0; i < s.length; i++) {
       const ch = s.charAt(i);
       v = this.trie[v].down[ch];
     }
-    this.trie[v].leaf_count--;
+    this.trie[v].leafs.delete(id);
   };
 
   getLink = (v: number): number => {
@@ -88,7 +82,7 @@ export class AhoCorasick {
       var curr = this.getLink(v);
       if (v === 0 || curr === 0) {
         this.trie[v].exit_link = 0;
-      } else if (this.trie[v].leaf_count > 0) {
+      } else if (this.trie[v].leafs.size > 0) {
         this.trie[v].exit_link = curr;
       } else {
         this.trie[v].exit_link = this.getExitLink(curr);
@@ -97,19 +91,19 @@ export class AhoCorasick {
     return this.trie[v].exit_link;
   };
 
-  query = (s: string): number => {
-    var ans = 0;
+  query = (s: string): HashMap<string, number> => {
+    var ans: HashMap<string, number> = {};
     var v = 0;
     var curr_l = 0;
     for (var i = 0; i < s.length; i++) {
       const ch = s.charAt(i);
-      v = this.nxt(v, ch);
-      ans += this.trie[v].leaf_count;
-      curr_l = this.getExitLink(v);
-      while (curr_l > 0) {
-        ans += this.trie[curr_l].leaf_count;
+      v = curr_l = this.nxt(v, ch);
+      do {
+        this.trie[curr_l].leafs.forEach(function (leaf) {
+          ans[leaf] = ans[leaf] === undefined ? 1 : ans[leaf] + 1;
+        });
         curr_l = this.getExitLink(curr_l);
-      }
+      } while (curr_l > 0);
     }
     return ans;
   };

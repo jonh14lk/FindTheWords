@@ -10,7 +10,7 @@ interface Props {
 const ListWords: React.FC<Props> = ({ words, setWords }) => {
   const handleRemove = (id: string, word: string) => {
     setWords(words.filter((item) => item.id !== id));
-    ahoCorasick.remString(word);
+    ahoCorasick.remString(word, id);
   };
 
   const renderList = () => {

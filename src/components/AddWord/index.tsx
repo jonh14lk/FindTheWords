@@ -26,14 +26,16 @@ const AddWord: React.FC<Props> = ({ words, setWords }) => {
     if (!input.word) {
       return;
     }
+    const id = uuidv1();
     setWords([
       ...words,
       {
         word: input.word,
-        id: uuidv1(),
+        id: id,
+        occurrences: 0,
       },
     ]);
-    ahoCorasick.addString(input.word);
+    ahoCorasick.addString(input.word, id);
   };
 
   return (

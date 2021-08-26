@@ -10,6 +10,7 @@ export interface WordInterface {
   words: {
     word: string;
     id: string;
+    occurrences: number;
   }[];
 }
 
@@ -26,7 +27,7 @@ const Main = () => {
           <AddWord words={words} setWords={setWords}></AddWord>
         </div>
         <div>
-          <AddPattern />
+          <AddPattern words={words}></AddPattern>
         </div>
       </div>
     </div>
