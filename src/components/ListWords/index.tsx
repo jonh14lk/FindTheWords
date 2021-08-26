@@ -1,5 +1,5 @@
 import react from "react";
-import { WordInterface } from "../Main";
+import { WordInterface, ahoCorasick } from "../Main";
 import "./index.css";
 
 interface Props {
@@ -8,8 +8,9 @@ interface Props {
 }
 
 const ListWords: React.FC<Props> = ({ words, setWords }) => {
-  const handleRemove = (id: string) => {
+  const handleRemove = (id: string, word: string) => {
     setWords(words.filter((item) => item.id !== id));
+    ahoCorasick.remString(word);
   };
 
   const renderList = () => {
@@ -22,7 +23,7 @@ const ListWords: React.FC<Props> = ({ words, setWords }) => {
           <button
             className="ListBtn"
             onClick={() => {
-              handleRemove(word.id);
+              handleRemove(word.id, word.word);
             }}
           >
             Remove
