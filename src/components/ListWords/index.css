@@ -25,3 +25,8 @@
   color: white;
   border: none;
 }
+
+.ListOcurrences {
+  width: 30%;
+  text-align: left;
+}

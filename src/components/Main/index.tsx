@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AhoCorasick } from "../../algorithm/AhoCorasick";
 import ListWords from "../ListWords";
 import AddWord from "../AddWord";
 import AddPattern from "../AddPattern";
@@ -14,8 +13,6 @@ export interface WordInterface {
   }[];
 }
 
-export var ahoCorasick: AhoCorasick = new AhoCorasick();
-
 const Main = () => {
   const [words, setWords] = useState<WordInterface["words"]>([]);
   return (
@@ -27,7 +24,7 @@ const Main = () => {
           <AddWord words={words} setWords={setWords}></AddWord>
         </div>
         <div>
-          <AddPattern words={words}></AddPattern>
+          <AddPattern words={words} setWords={setWords}></AddPattern>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { v1 as uuidv1 } from "uuid";
-import { WordInterface, ahoCorasick } from "../Main";
+import { WordInterface } from "../Main";
 import "./index.css";
 
 interface Props {
@@ -32,10 +32,9 @@ const AddWord: React.FC<Props> = ({ words, setWords }) => {
       {
         word: input.word,
         id: id,
-        occurrences: 0,
+        occurrences: -1,
       },
     ]);
-    ahoCorasick.addString(input.word, id);
   };
 
   return (
