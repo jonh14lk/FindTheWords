@@ -2,10 +2,12 @@
 
 ## Purpose
 
-Given a set of strings(words) and a text(pattern). We have to print the number of occurrences of all strings from the set in the given text in linear time complexity. The app uses the Aho-Corasick algorithm.
+Given a set of strings (words) and a text (pattern). We have to print the number of occurrences of all strings from the set in the given text in linear time complexity. The app uses the Aho-Corasick algorithm.
 
 <div align="center">
+
 ![](https://media3.giphy.com/media/5gcnqirvqra56V8XeG/giphy.gif?cid=790b761198734e68a5f5842c54206cf977278e9d63ea0b01&rid=giphy.gif&ct=g)
+
 </div>
 
 ## Aho–Corasick algorithm
